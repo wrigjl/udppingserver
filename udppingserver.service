@@ -1,0 +1,17 @@
+[Unit]
+Description=UDP Ping Server
+Documentation=man:udppingserver(8)
+After=network.target auditd.service
+
+[Service]
+ExecStart=-/home/ubuntu/udppingserver/target/debug/udppingserver
+ExecReload=/bin/kill $MAINPID
+KillMode=process
+Restart=on-failure
+StandardError=journal
+StandardInput=/dev/null
+StandardOutput=journal
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
